@@ -17,13 +17,15 @@ app.get('/', (req, res) => res.send('Hello world!'));
 
 app.use('/api/contacts', contacts);
 
-const port = process.env.PORT || 3006;
 
-if (port === 'production' || port === 'staging') {
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
  app.use(express.static('client/build'));
  app.get('*', (req, res) => {
  res.sendFile(path.join(__dirname + '/client/build/index.html'));
  });
 }
+
+const port = process.env.PORT || 3006;
+
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
