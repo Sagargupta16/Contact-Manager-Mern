@@ -10,16 +10,23 @@ const path = require('path');
 // Connect Database
 connectDB();
 
-const port = process.env.PORT || 3006;
-
 app.use(cors({origin: true,Credentials: true}));
 app.use('/api/contacts', contacts);
 
-if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
- app.use(express.static('client/build'));
+__dirname = path.resolve();
+
+if (process.env.NODE_ENV === 'production') {
+ app.use(express.static(path.join(__dirname,'client/build')));
+
  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+    res.sendFile(path.resolve(__dirname,'client', 'build', 'index.html'));
  });
 }
+else{
+    app.get('/', (req, res) => {
+        res.send('Server is running');
+    })
+}
+const port = process.env.PORT || 3006;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
