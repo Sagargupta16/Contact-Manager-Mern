@@ -13,9 +13,9 @@ connectDB();
 app.use(cors({origin: true,Credentials: true}));
 app.use('/api/contacts', contacts);
 
-NODE_ENV = development;
+__dirname = path.resolve();
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
  app.use(express.static(path.join(__dirname,'client/build')));
 
  app.get('*', (req, res) => {
