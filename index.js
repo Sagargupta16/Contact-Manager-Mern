@@ -5,7 +5,6 @@ const dotenv = require('dotenv');
 
 const contacts = require('./routes/api/contacts');
 
-
 const app = express();
 const path = require('path');
 
@@ -21,6 +20,10 @@ app.use('/api/contacts', contacts);
 __dirname = path.resolve();
 
 
+const port = process.env.PORT || 3006;
+
+app.listen(port, () => console.log(`Server running on port ${port}`));
+
 if (process.env.NODE_ENV === "production") {
  app.use(express.static(path.join(__dirname,"/client/build")));
  app.get("*", (req, res) => {
@@ -28,9 +31,6 @@ if (process.env.NODE_ENV === "production") {
  });
 }else{
     app.get('/', (req, res) => {
-        res.send('API is running');
+        res.send('API is running....');
     })
 }
-const port = process.env.PORT || 3006;
-
-app.listen(port, () => console.log(`Server running on port ${port}`));
