@@ -10,7 +10,8 @@ const path = require('path');
 // Connect Database
 connectDB();
 
-app.use(cors({origin: true,Credentials: true}));
+app.use(cors());
+app.use(express.json());
 app.use('/api/contacts', contacts);
 
 __dirname = path.resolve();
