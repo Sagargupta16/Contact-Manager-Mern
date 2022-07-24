@@ -15,6 +15,8 @@ app.use('/api/contacts', contacts);
 
 __dirname = path.resolve();
 
+NODE_ENV = development;
+
 if (process.env.NODE_ENV === 'production') {
  app.use(express.static(path.join(__dirname,'client/build')));
 
