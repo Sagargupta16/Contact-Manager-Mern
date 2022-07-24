@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import axios from 'axios';
-import api from '../api/contacts';
 import './App.css';
 import Header from './Header';
 import AddContact from './AddContact.js';
@@ -26,10 +25,6 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
-  const retrieveContacts = async () => {
-    const response = await api.get('/');
-    return response.data;
-  }
 
   const addContactHandler = async (contact) => {
     axios
@@ -60,13 +55,7 @@ function App() {
   }
 
   useEffect(() => {
-    const getAllContacts = async () => {
-      const allContacts = await retrieveContacts();
-      if(allContacts.length > 0) {
-        setContacts(allContacts);
-      }
-    }
-    getAllContacts();
+    getContacts();
   }, []);
 
 
