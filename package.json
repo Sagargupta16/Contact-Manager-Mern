@@ -4,16 +4,16 @@
   "description": "Contact Managing Application",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "client":"cd client && npm start",
+    "dev": "concurrently \"nodemon index.js\"  \"cd client && npm start\"",
     "start": "node index.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "concurrently \"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client\" \"npm start\" "
   },
   "author": "Sagar Gupta",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
+    "concurrently": "^7.3.0",
     "config": "^3.3.7",
     "cors": "^2.8.5",
     "express": "^4.18.1",
