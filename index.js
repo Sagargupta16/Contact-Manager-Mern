@@ -13,8 +13,6 @@ connectDB();
 app.use(cors({origin: true,Credentials: true}));
 app.use('/api/contacts', contacts);
 
-__dirname = path.resolve();
-
 NODE_ENV = development;
 
 if (process.env.NODE_ENV === 'production') {
