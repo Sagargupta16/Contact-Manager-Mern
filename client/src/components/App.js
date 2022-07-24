@@ -14,7 +14,7 @@ function App() {
 
   const getContacts = () => {
       axios
-      .get('http://localhost:3006/api/contacts')
+      .get('/api/contacts')
       .then(res => {
         setContacts(res.data)
       })
@@ -28,7 +28,7 @@ function App() {
 
   const addContactHandler = async (contact) => {
     axios
-        .post('http://localhost:3006/api/contacts', contact)
+        .post('/api/contacts', contact)
         .then(res => {getContacts();})
         .catch(err => {
           console.log('Error from AddContact');
@@ -37,7 +37,7 @@ function App() {
 
   const updateContactHandler = async (contact) => {
     axios
-      .put('http://localhost:3006/api/contacts/'+contact._id, contact)
+      .put('/api/contacts/'+contact._id, contact)
       .then(res => {getContacts();})
       .catch(err => {
         console.log("Error from UpdateContactInfo");
@@ -46,7 +46,7 @@ function App() {
 
   const removeContactHandler = async (contact) => {
     axios
-      .delete('http://localhost:3006/api/contacts/'+contact._id,contact)
+      .delete('/api/contacts/'+contact._id,contact)
       .then(res => {getContacts();})
       .catch(err => {
         console.log("Error from RemoveContact");
