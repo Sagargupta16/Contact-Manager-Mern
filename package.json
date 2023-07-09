@@ -1,15 +1,5 @@
 {
-  "name": "contact-manager",
-  "version": "1.0.0",
-  "description": "Contact Managing Application",
-  "main": "index.js",
-  "scripts": {
-    "dev": "concurrently \"nodemon index.js\"  \"cd client && npm start\"",
-    "start": "node index",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
-  },
   "author": "Sagar Gupta",
-  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
@@ -21,7 +11,17 @@
     "mongoose": "^7.0.0",
     "validation": "^0.0.1"
   },
+  "description": "Contact Managing Application",
   "devDependencies": {
     "nodemon": "^3.0.0"
-  }
+  },
+  "license": "ISC",
+  "main": "index.js",
+  "name": "contact-manager",
+  "scripts": {
+    "dev": "concurrently \"nodemon index.js\"  \"cd client && npm start\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "start": "node index"
+  },
+  "version": "1.0.0"
 }
