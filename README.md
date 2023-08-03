@@ -38,7 +38,7 @@ This project is created as a MERN (MongoDB, Express.js, React, Node.js) App. It 
 - **client/src/components/EditContact.js**: This File Contains the editing page UI where you can edit contact details from old data.
 - **client/src/components/Header.js**: This contains the header part which is a fixed part for every route.
 - **client/src/components/darkmode.js**: This contains the dark mode switching feature onclick and also saves the selected mode to local storage.
-- **client/src/components/predata.js**: This is an array of data which is given from before.
+- **client/src/components/predata.js**: This is an array of data that is given from before.
 - **client/src/index.js**: This binds App.js to the HTML root div.
 
 ### Backend
@@ -63,10 +63,10 @@ This project is created as a MERN (MongoDB, Express.js, React, Node.js) App. It 
 
 ## Project Images
 
-![Contact Manager](client/images/1_1.png)
-![Contact Manager](client/images/1_2.png)
-![Contact Manager](client/images/1_3.png)
-![Contact Manager](client/images/1_4.png)
-![Contact Manager](client/images/1_5.png)
-![Contact Manager](client/images/1_6.png)
-![Contact Manager](client/images/1_7.png)
+![Contact Manager](./client/images/1_1.png)
+![Contact Manager](./client/images/1_2.png)
+![Contact Manager](./client/images/1_3.png)
+![Contact Manager](./client/images/1_4.png)
+![Contact Manager](./client/images/1_5.png)
+![Contact Manager](./client/images/1_6.png)
+![Contact Manager](./client/images/1_7.png)
