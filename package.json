@@ -9,6 +9,7 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mongoose": "^8.0.0",
+    "prettier": "^3.0.3",
     "validation": "^0.0.1"
   },
   "description": "Contact Managing Application",
@@ -21,7 +22,9 @@
   "scripts": {
     "dev": "concurrently \"nodemon index.js\"  \"cd client && npm start\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-    "start": "node index"
+    "start": "node index",
+    "build": "concurrently \"npm install\" \"cd client && npm install\"",
+    "format": "prettier --write ."
   },
   "version": "1.0.0"
 }
