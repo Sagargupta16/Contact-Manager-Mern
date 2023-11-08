@@ -23,7 +23,8 @@
     "format": "prettier --write .",
     "start": "nodemon server.js",
     "frontend-build": "cd client && npm run build",
-    "build": "npm install && concurrently \"cd client && npm install\" \"npm run frontend-build\""
+    "frontend-install": "cd client && npm install",
+    "build": "npm install && npm run frontend-install && npm run frontend-build",
   },
   "version": "1.0.0"
 }
