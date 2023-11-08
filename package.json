@@ -20,11 +20,10 @@
   "main": "index.js",
   "name": "contact-manager",
   "scripts": {
-    "dev": "concurrently \"nodemon index.js\"  \"cd client && npm start\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-    "start": "node index",
-    "build": "concurrently \"npm install\" \"cd client && npm install\"",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "start": "nodemon server.js",
+    "frontend-build": "cd client && npm run build",
+    "build": "npm install && concurrently \"cd client && npm install\" \"npm run frontend-build\""
   },
   "version": "1.0.0"
 }
