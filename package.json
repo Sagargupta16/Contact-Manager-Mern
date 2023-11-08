@@ -24,7 +24,7 @@
     "start": "nodemon server.js",
     "frontend-build": "cd client && npm run build",
     "frontend-install": "cd client && npm install",
-    "build": "npm install && npm run frontend-install && npm run frontend-build",
+    "build": "npm install && npm run frontend-install && npm run frontend-build"
   },
   "version": "1.0.0"
 }
