@@ -11,56 +11,43 @@ import ContactDetail from "./ContactDetail";
 
 function App() {
   const [contacts, setContacts] = useState([]);
-
-  const getContacts = () => {
-    axios
-      .get("/api/contacts")
-      .then((res) => {
-        setContacts(res.data);
-      })
-      .catch((err) => {
-        console.log("Error from ContactList");
-      });
-  };
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const getContacts = async () => {
+    try {
+      const res = await axios.get("/api/contacts");
+      setContacts(res.data);
+    } catch (err) {
+      console.log("Error from ContactList", err);
+    }
+  };
 
   const addContactHandler = async (contact) => {
-    axios
-      .post("/api/contacts", contact)
-      .then((res) => {
-        getContacts();
-      })
-      .catch((err) => {
-        console.log("Error from AddContact");
-      });
+    try {
+      await axios.post("/api/contacts", contact);
+      getContacts();
+    } catch (err) {
+      console.log("Error from AddContact", err);
+    }
   };
 
   const updateContactHandler = async (contact) => {
-    axios
-      .put("/api/contacts/" + contact._id, contact)
-      .then((res) => {
-        getContacts();
-      })
-      .catch((err) => {
-        console.log("Error from UpdateContactInfo");
-      });
+    try {
+      await axios.put("/api/contacts/" + contact._id, contact);
+      getContacts();
+    } catch (err) {
+      console.log("Error from UpdateContactInfo", err);
+    }
   };
 
   const removeContactHandler = async (contact) => {
-    axios
-      .delete("/api/contacts/" + contact._id, contact)
-      .then((res) => {
-        getContacts();
-      })
-      .catch((err) => {
-        console.log("Error from RemoveContact");
-      });
+    try {
+      await axios.delete("/api/contacts/" + contact._id, contact);
+      getContacts();
+    } catch (err) {
+      console.log("Error from RemoveContact", err);
+    }
   };
-
-  useEffect(() => {
-    getContacts();
-  }, []);
 
   const searchHandler = (searchTerm) => {
     setSearchTerm(searchTerm);
@@ -77,6 +64,9 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    getContacts();
+  }, []);
   return (
     <div className="App-container">
       <Router>
@@ -86,7 +76,6 @@ function App() {
             path="/"
             element={
               <ContactList
-                {...contacts}
                 contacts={searchTerm.length < 1 ? contacts : searchResults}
                 getContactID={removeContactHandler}
                 term={searchTerm}

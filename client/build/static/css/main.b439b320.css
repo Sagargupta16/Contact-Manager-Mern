@@ -14,7 +14,6 @@ body.dark {
   --text-black-900: #fff;
 }
 body {
-  background-color: #f2f2fc;
   background-color: var(--bg-black-900);
   font-family: Poppins, sans-serif;
   font-size: 16px;
@@ -33,11 +32,8 @@ body {
   box-sizing: border-box;
 }
 .Header-container {
-  background: #f2f2fc;
   background: var(--bg-black-900);
-  box-shadow: 0 0 15px #e8dfec;
   box-shadow: 0 0 15px var(--bg-black-50);
-  color: #212031;
   color: var(--text-black-900);
   padding: 10px;
   position: fixed;
@@ -47,11 +43,9 @@ body {
 }
 .btn {
   align-items: center;
-  background-color: #212031;
   background-color: var(--text-black-900);
   border: none;
   border-radius: 15px;
-  color: #f2f2fc;
   color: var(--bg-black-900);
   font-size: 20px;
   font-weight: 700;
@@ -61,10 +55,8 @@ body {
   padding: 0 20px;
 }
 .btn:hover {
-  box-shadow: 0 0 15px #e8dfec;
   box-shadow: 0 0 15px var(--bg-black-50);
   cursor: pointer;
-  -webkit-transform: scale(1.02);
   transform: scale(1.02);
 }
 .container-contact2 {
@@ -80,10 +72,8 @@ body {
   top: 0;
 }
 .wrap-contact2 {
-  background: #f2f2fc;
   background: var(--bg-black-900);
   border-radius: 20px;
-  box-shadow: 0 0 15px #e8dfec;
   box-shadow: 0 0 15px var(--bg-black-50);
   margin: 100px 30px 0;
   max-width: 600px;
@@ -92,7 +82,6 @@ body {
   width: 100%;
 }
 .wrap-contact2:hover {
-  box-shadow: 0 0 25px #e8dfec;
   box-shadow: 0 0 25px var(--bg-black-50);
 }
 .contact2-form {
@@ -101,7 +90,6 @@ body {
   width: 100%;
 }
 .contact2-form-title {
-  color: #212031;
   color: var(--text-black-900);
   display: block;
   font-family: Poppins, sans-serif;
@@ -112,7 +100,6 @@ body {
   text-align: center;
 }
 .wrap-input2 {
-  border-bottom: 3px solid #e8dfec;
   border-bottom: 3px solid var(--bg-black-50);
   border-radius: 15px;
   margin-bottom: 25px;
@@ -129,12 +116,10 @@ body {
 }
 .con-list-empty,
 .input2 {
-  color: #212031;
   color: var(--text-black-900);
   width: 100%;
 }
 .input2 {
-  background-color: #fdf9ff;
   background-color: var(--bg-black-100);
   border: none;
   border-radius: 15px;
@@ -148,10 +133,8 @@ body {
 }
 .item {
   align-items: center;
-  background-color: #f2f2fc;
   background-color: var(--bg-black-900);
   border-radius: 30px;
-  box-shadow: 0 0 5px #e8dfec;
   box-shadow: 0 0 5px var(--bg-black-50);
   display: flex;
   height: 100%;
@@ -163,16 +146,12 @@ body {
   width: 100%;
 }
 .item:hover {
-  background-color: #e8dfec;
   background-color: var(--bg-black-50);
-  box-shadow: 0 0 10px #e8dfec;
   box-shadow: 0 0 10px var(--bg-black-50);
   cursor: pointer;
-  -webkit-transform: scaleX(1.02) scaleY(1.1);
   transform: scaleX(1.02) scaleY(1.1);
 }
 .image-avtar {
-  background-color: #fdf9ff;
   background-color: var(--bg-black-100);
   border-radius: 50%;
   height: 50px;
@@ -182,7 +161,6 @@ body {
 }
 .content {
   align-items: center;
-  color: #504e70;
   color: var(--text-black-700);
   display: flex;
   flex-direction: column;
@@ -199,7 +177,6 @@ body {
 .remove-icon:hover {
   color: darkred;
   cursor: pointer;
-  -webkit-transform: scale(1.2);
   transform: scale(1.2);
 }
 .edit-icon {
@@ -212,7 +189,6 @@ body {
 .edit-icon:hover {
   color: #00008b;
   cursor: pointer;
-  -webkit-transform: scale(1.2);
   transform: scale(1.2);
 }
 .contact-list {
@@ -233,14 +209,11 @@ body {
 }
 .s-icon,
 .style-switcher {
-  background: #fdf9ff;
   background: var(--bg-black-100);
 }
 .s-icon {
-  border: 1px solid #e8dfec;
   border: 1px solid var(--bg-black-50);
   border-radius: 50%;
-  color: #212031;
   color: var(--text-black-900);
   cursor: pointer;
   font-size: 20px;
@@ -257,7 +230,6 @@ body {
 }
 .con-length {
   align-items: right;
-  color: #504e70;
   color: var(--text-black-700);
   font-size: 20px;
   margin-bottom: 20px;
@@ -270,7 +242,6 @@ body {
   width: 100%;
 }
 .contact2-form-title2 {
-  color: #212031;
   color: var(--text-black-900);
   display: flex;
   font-size: 35px;
@@ -282,13 +253,10 @@ body {
 }
 .btn2 {
   align-items: flex-end;
-  background-color: #212031;
   background-color: var(--text-black-900);
   border: none;
   border-radius: 15px;
-  box-shadow: 0 0 25px #e8dfec;
   box-shadow: 0 0 25px var(--bg-black-50);
-  color: #f2f2fc;
   color: var(--bg-black-900);
   font-size: 20px;
   font-weight: 700;
@@ -298,20 +266,15 @@ body {
   padding: 0 20px;
 }
 .btn2:hover {
-  background-color: #504e70;
   background-color: var(--text-black-700);
   cursor: pointer;
-  -webkit-transform: scale(1.02);
   transform: scale(1.02);
 }
 .btn3 {
-  background-color: #212031;
   background-color: var(--text-black-900);
   border: none;
   border-radius: 15px;
-  box-shadow: 0 0 25px #e8dfec;
   box-shadow: 0 0 25px var(--bg-black-50);
-  color: #f2f2fc;
   color: var(--bg-black-900);
   font-size: 20px;
   font-weight: 700;
@@ -323,10 +286,8 @@ body {
   z-index: 5;
 }
 .btn3:hover {
-  background-color: #504e70;
   background-color: var(--text-black-700);
   cursor: pointer;
-  -webkit-transform: scale(1.02);
   transform: scale(1.02);
 }
 @media (max-width: 700px) {
@@ -356,7 +317,6 @@ body {
 }
 .main {
   align-items: center;
-  background-color: #f2f2fc;
   background-color: var(--bg-black-900);
   display: flex;
   flex-direction: column;
@@ -370,10 +330,8 @@ body {
 }
 .card {
   align-items: center;
-  background-color: #fdf9ff;
   background-color: var(--bg-black-100);
   border-radius: 50px;
-  box-shadow: 0 0 25px #e8dfec;
   box-shadow: 0 0 25px var(--bg-black-50);
   display: flex;
   flex-direction: column;
@@ -391,7 +349,6 @@ body {
 }
 .card-content {
   align-items: center;
-  color: #212031;
   color: var(--text-black-900);
   display: flex;
   flex-direction: column;
@@ -415,17 +372,14 @@ body {
 .Prompt,
 .con-search-input {
   align-items: center;
-  color: #212031;
   color: var(--text-black-900);
   display: flex;
   justify-content: center;
 }
 .Prompt {
-  background-color: #fdf9ff;
   background-color: var(--bg-black-100);
   border: none;
   border-radius: 50px;
-  box-shadow: 0 0 25px #e8dfec;
   box-shadow: 0 0 25px var(--bg-black-50);
   flex-direction: column;
   font-size: 18px;
@@ -434,9 +388,8 @@ body {
   width: 90%;
 }
 .fa-search {
-  color: #212031;
   color: var(--text-black-900);
   font-size: 25px;
   margin: 10px;
 }
-/*# sourceMappingURL=main.ae11be87.css.map*/
+/*# sourceMappingURL=main.b439b320.css.map*/
