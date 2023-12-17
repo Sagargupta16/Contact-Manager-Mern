@@ -7,7 +7,7 @@ const ContactCard = (props) => {
     <div className="item">
       <img
         className="image-avtar"
-        src="http://www.gravatar.com/avatar/?d=mp"
+        src="https://www.gravatar.com/avatar/?d=mp"
         alt="user"
       />
       <Link to={`/contact/${_id}`}>
