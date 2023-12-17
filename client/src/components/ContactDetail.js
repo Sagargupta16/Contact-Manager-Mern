@@ -14,7 +14,7 @@ const ContactDetail = (props) => {
       </Link>
       <div className="card">
         <div className="card-image">
-          <img src="http://www.gravatar.com/avatar/?d=mp" alt="user" />
+          <img src="https://www.gravatar.com/avatar/?d=mp" alt="user" />
         </div>
         <div className="card-content">
           <div className="card-content-header">{name}</div>
