@@ -1,6 +1,6 @@
 # Contact Manager
 
-#### Project deployed link -> [Contact Manager](https://contact-manager-mern-stack.herokuapp.com/)
+#### Project deployed link -> [Contact Manager](https://contact-manager-mern-cg19.onrender.com/)
 
 ---
 
