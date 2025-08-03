@@ -56,13 +56,28 @@ router.put("/:id", jsonParser, function (req, res) {
     );
 });
 
-// @route GET api/contacts/:id
+// @route DELETE api/contacts/:id
 // @description Delete Contact by id
 // @access Public
 router.delete("/:id", jsonParser, function (req, res) {
-  Contact.findByIdAndRemove(req.params.id, req.body)
-    .then((Contact) => res.json({ mgs: "Contact entry deleted successfully" }))
-    .catch((err) => res.status(404).json({ error: "No such a Contact" }));
+  const contactId = req.params.id;
+
+  // Check if the provided ID is a valid MongoDB ObjectId
+  if (!contactId.match(/^[0-9a-fA-F]{24}$/)) {
+    return res.status(400).json({ error: "Invalid contact ID format" });
+  }
+
+  Contact.findByIdAndDelete(contactId)
+    .then((contact) => {
+      if (!contact) {
+        return res.status(404).json({ error: "No such Contact found" });
+      }
+      res.json({ msg: "Contact entry deleted successfully" });
+    })
+    .catch((err) => {
+      console.error("Delete error:", err);
+      res.status(500).json({ error: "Unable to delete the Contact" });
+    });
 });
 
 module.exports = router;
