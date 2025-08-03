@@ -2,7 +2,7 @@
   "author": "Sagar Gupta",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.20.0",
+    "body-parser": "^2.0.0",
     "concurrently": "^8.0.0",
     "config": "^3.3.7",
     "cors": "^2.8.5",
