@@ -15,7 +15,7 @@
     "react-toastify": "^11.0.0",
     "util": "^0.12.4",
     "util-deprecate": "^1.0.2",
-    "uuid": "^11.0.0",
+    "uuid": "^12.0.0",
     "uuidv4": "^6.2.13",
     "web-vitals": "^5.0.0"
   },
