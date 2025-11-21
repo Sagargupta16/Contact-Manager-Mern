@@ -8,7 +8,7 @@
     "cors": "^2.8.5",
     "dotenv": "^17.0.0",
     "express": "^5.0.0",
-    "mongoose": "^8.0.0",
+    "mongoose": "^9.0.0",
     "prettier": "^3.0.3",
     "validation": "^0.0.1"
   },
