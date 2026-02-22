@@ -38,7 +38,8 @@ router.get("/contact/:id", (req, res) => {
 // @description add/save Contact
 // @access Public
 router.post("/", jsonParser, function (req, res) {
-  Contact.create(req.body)
+  const { name, email, phone } = req.body;
+  Contact.create({ name, email, phone })
     .then((contact) => res.json({ msg: "Contact added successfully" }))
     .catch((err) =>
       res.status(400).json({ error: "Unable to add this Contact" }),
@@ -49,7 +50,8 @@ router.post("/", jsonParser, function (req, res) {
 // @description Update Contact
 // @access Public
 router.put("/:id", jsonParser, function (req, res) {
-  Contact.findByIdAndUpdate(req.params.id, req.body)
+  const { name, email, phone } = req.body;
+  Contact.findByIdAndUpdate(req.params.id, { name, email, phone })
     .then((contact) => res.json({ msg: "Updated successfully" }))
     .catch((err) =>
       res.status(400).json({ error: "Unable to update the Database" }),

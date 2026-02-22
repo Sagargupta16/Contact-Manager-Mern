@@ -1,72 +1,121 @@
-# Contact Manager
+# Contact Manager (MERN)
 
-#### Project deployed link -> [Contact Manager](https://contact-manager-mern-cg19.onrender.com/)
+A full-stack contact management application built with the MERN stack, featuring MongoDB persistence, dark/light mode, and real-time CRUD operations.
 
----
+![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black)
+![Express](https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)
 
-## :pencil: About The Project
+## Live Demo
 
-Contact Manager is a web application that allows users to manage their contacts with privacy.
+[contact-manager-mern-cg19.onrender.com](https://contact-manager-mern-cg19.onrender.com/)
 
----
+## Overview
 
-## :cloud: Overview
+A MERN (MongoDB, Express.js, React, Node.js) contact management application that provides full CRUD operations for contacts with a MongoDB backend. Features dark/light mode with localStorage persistence and zero-refresh navigation using React Router.
 
-This project is created as a MERN (MongoDB, Express.js, React, Node.js) App. It allows users to add, edit, delete, and search for contacts, along with viewing individual contact details. The project also includes a Switching between dark and light mode, and the user's theme preference is saved in local storage, so the mode will remain the same as the last time they left. All data is saved on the MongoDB server, and the project has a 0 refresh rate achieved using routers.
+## Features
 
----
+- **Add Contacts** -- Create new contacts with name, email, and phone
+- **Edit Contacts** -- Update existing contact information
+- **Delete Contacts** -- Remove contacts from the database
+- **Search** -- Filter contacts by name or email
+- **Contact Details** -- View individual contact information
+- **Dark/Light Mode** -- Theme toggle persisted in localStorage
+- **MongoDB Persistence** -- All data stored in MongoDB
+- **Zero-Refresh Navigation** -- SPA routing with React Router
 
-## 💻 Tech Stack
+## Tech Stack
 
-- Basics: HTML, CSS, and Javascript.
-- Client: React, Redux, and React Router.
-- Server: Nodejs, Expressjs, and MongoDB.
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React 18, React Router, Redux, CSS |
+| Backend | Node.js, Express 4.18 |
+| Database | MongoDB 8.0, Mongoose |
+| Auth | bcryptjs |
+| Dev Tools | Concurrently, Nodemon |
 
----
+## Project Structure
 
-## :floppy_disk: Project Files Description
+```
+Contact-Manager-Mern/
+├── client/                     # React frontend
+│   ├── public/
+│   ├── images/                 # Screenshots
+│   └── src/
+│       └── components/
+│           ├── App.js          # Root with routing
+│           ├── AddContact.js   # Add contact form
+│           ├── EditContact.js  # Edit contact form
+│           ├── ContactList.js  # Contact list display
+│           ├── ContactCard.js  # Individual contact card
+│           ├── ContactDetails.js # Contact detail view
+│           ├── Header.js       # App header
+│           └── darkmode.js     # Theme toggle
+├── config/
+│   ├── db.js                   # MongoDB connection
+│   └── default.js              # Database URL config
+├── models/
+│   └── Contact.js              # Contact Mongoose schema
+├── routes/
+│   └── api/
+│       └── contacts.js         # CRUD API routes
+├── index.js                    # Express server entry
+└── package.json
+```
 
-### Frontend
+## Getting Started
 
-- **client/public/index.html**: This File contains stylesheet links and root div.
-- **client/src/components/App.js**: This JS File imports all other JS component files and binds them together with the help of the router. Its content is spread throughout all routes.
-- **client/src/components/AddContact.js**: This contains the HTML structure of the /addcontact route, which takes data in form-based and passes it to app.js, which stores it in local storage.
-- **client/src/components/App.css**: This contains all the styling of each route page.
-- **client/src/components/ContactCard.js**: This contains each individual contact card's details displayed on the front page, along with edit and delete buttons.
-- **client/src/components/ContactDetails.js**: This contains details of individual contacts when tapped on them.
-- **client/src/components/ContactList.js**: This contains the full list of all contacts displayed on the front page.
-- **client/src/components/EditContact.js**: This File Contains the editing page UI where you can edit contact details from old data.
-- **client/src/components/Header.js**: This contains the header part which is a fixed part for every route.
-- **client/src/components/darkmode.js**: This contains the dark mode switching feature onclick and also saves the selected mode to local storage.
-- **client/src/components/predata.js**: This is an array of data that is given from before.
-- **client/src/index.js**: This binds App.js to the HTML root div.
+### Prerequisites
 
-### Backend
+- Node.js 16+
+- MongoDB (local or Atlas)
 
-- **config/db.js**: This contains the Database Connectivity function.
-- **config/default.js**: This contains the Database URL (i.e. MongoURL).
-- **models/Contact.js**: This contains the structure of the Contact.
-- **routes/api/contacts.js**: This contains all CRUD operation routes to be performed.
-- **index.js**: This is the main file of the backend or server side.
+### Installation
 
----
+```bash
+git clone https://github.com/Sagargupta16/Contact-Manager-Mern.git
+cd Contact-Manager-Mern
 
-## 📼 How you can run it Locally
+# Install all dependencies (backend + frontend)
+npm run fb-install
+```
 
-1. Go to the code section above and download it as a zip.
-2. Extract the zip file, then open the extracted folder in vscode.
-3. Press ctrl+j on Windows, it will open the terminal to this folder.
-4. Now run the command npm run dev, which will launch this on localhost:3000 and the server at localhost:3006. (If it doesn't redirect you, then manually search localhost:3000).
-5. Done! Now you will be able to see the project running on your system.
+### Configuration
 
----
+Update `config/default.js` with your MongoDB connection string:
 
-## Project Images
+```js
+module.exports = {
+  mongoURI: "your_mongodb_connection_string"
+};
+```
+
+### Running
+
+```bash
+npm run dev
+# Frontend: http://localhost:3000
+# Backend:  http://localhost:3006
+```
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/contacts` | Get all contacts |
+| GET | `/api/contacts/:id` | Get single contact |
+| POST | `/api/contacts` | Create contact |
+| PUT | `/api/contacts/:id` | Update contact |
+| DELETE | `/api/contacts/:id` | Delete contact |
+
+## Screenshots
 
 ![Contact Manager](./client/images/1_1.png)
 ![Contact Manager](./client/images/1_2.png)
 ![Contact Manager](./client/images/1_3.png)
-![Contact Manager](./client/images/1_4.png)
-![Contact Manager](./client/images/1_5.png)
-![Contact Manager](./client/images/1_6.png)
-![Contact Manager](./client/images/1_7.png)
+
+## License
+
+MIT
