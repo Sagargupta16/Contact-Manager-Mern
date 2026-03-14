@@ -1,3 +1,29 @@
-client/node_modules 
-node_modules
-client/build
+# Dependencies
+node_modules/
+client/node_modules/
+
+# Build
+client/build/
+dist/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Coverage
+coverage/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs
+*.log
+npm-debug.log*
