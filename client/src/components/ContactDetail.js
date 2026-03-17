@@ -1,37 +1,18 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
 
-const ContactDetail = ({ contacts }) => {
-  const { id } = useParams();
-  const contact = contacts.find((c) => c._id === id);
-
-  if (!contact) {
-    return (
-      <div className="main">
-        <Link to="/">
-          <button className="btn3">{"<"}</button>
-        </Link>
-        <div className="card">
-          <div className="card-content">Contact not found</div>
-        </div>
-      </div>
-    );
-  }
+const ContactDetail = ({ contact, onEdit }) => {
+  const initial = contact.name.charAt(0).toUpperCase();
 
   return (
-    <div className="main">
-      <Link to="/">
-        <button className="btn3">{"<"}</button>
-      </Link>
-      <div className="card">
-        <div className="card-image">
-          <img src="https://www.gravatar.com/avatar/?d=mp" alt="user" />
-        </div>
-        <div className="card-content">
-          <div className="card-content-header">{contact.name}</div>
-          <div className="card-content-email">{contact.email}</div>
-        </div>
-      </div>
+    <div className="detail-view">
+      <div className="detail-avatar">{initial}</div>
+      <h2 className="detail-name">{contact.name}</h2>
+      <a className="detail-email" href={`mailto:${contact.email}`}>
+        {contact.email}
+      </a>
+      <button className="btn-secondary" onClick={() => onEdit(contact)}>
+        <i className="fas fa-pen" /> Edit Contact
+      </button>
     </div>
   );
 };

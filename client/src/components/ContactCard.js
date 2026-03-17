@@ -1,37 +1,38 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-const ContactCard = (props) => {
-  const { _id, name, email } = props.contact;
-
-  const handleDelete = () => {
-    if (window.confirm(`Are you sure you want to delete ${name}?`)) {
-      props.clickHandler(props.contact);
-    }
-  };
+const ContactCard = ({ contact, onView, onEdit, onDelete }) => {
+  const { name, email } = contact;
+  const initial = name.charAt(0).toUpperCase();
 
   return (
-    <div className="item">
-      <img
-        className="image-avtar"
-        src="https://www.gravatar.com/avatar/?d=mp"
-        alt="user"
-      />
-      <Link to={`/contact/${_id}`}>
-        <div className="content">
-          <div className="item-name">{name}</div>
-          <div className="item-mail">{email}</div>
-        </div>
-      </Link>
-      <Link to={{ pathname: `/edit/${_id}`, id: _id }}>
-        <i className="edit-icon fa fa-edit" />
-      </Link>
-      <button
-        className="remove-icon fa fa-remove"
-        onClick={handleDelete}
-        style={{ border: "none", background: "transparent", cursor: "pointer" }}
-        aria-label={`Delete ${name}`}
-      />
+    <div className="item" onClick={onView}>
+      <div className="avatar">{initial}</div>
+      <div className="content">
+        <div className="item-name">{name}</div>
+        <div className="item-mail">{email}</div>
+      </div>
+      <div className="item-actions">
+        <button
+          className="icon-btn edit"
+          onClick={(e) => {
+            e.stopPropagation();
+            onEdit();
+          }}
+          aria-label={`Edit ${name}`}
+        >
+          <i className="fas fa-pen" />
+        </button>
+        <button
+          className="icon-btn delete"
+          onClick={(e) => {
+            e.stopPropagation();
+            onDelete();
+          }}
+          aria-label={`Delete ${name}`}
+        >
+          <i className="fas fa-trash-alt" />
+        </button>
+      </div>
     </div>
   );
 };

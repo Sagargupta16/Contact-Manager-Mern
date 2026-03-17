@@ -1,60 +1,60 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
 import ContactCard from "./ContactCard";
 
-const ContactList = (props) => {
-  const inputE1 = useRef("");
-  const deleteContactHandler = (id) => {
-    props.getContactID(id);
-  };
-
-  const renderContactList = props.contacts.map((contacts) => {
-    return (
-      <ContactCard
-        contact={contacts}
-        clickHandler={deleteContactHandler}
-        key={contacts._id}
-      />
-    );
-  });
-
-  const getSearchTerm = () => {
-    props.searchKeyword(inputE1.current.value);
-  };
+const ContactList = ({
+  contacts,
+  term,
+  searchKeyword,
+  onAdd,
+  onView,
+  onEdit,
+  onDelete,
+}) => {
+  const inputRef = useRef("");
 
   return (
-    <div>
-      <div className="contact-list">
-        <span className="contact2-form-title2">
-          Contact list
-          <Link to="/add" className="contact2-form-add">
-            <button className="btn2">Add contact</button>
-          </Link>
-        </span>
+    <div className="contact-list">
+      <div className="contact-list-header">
+        <div>
+          <h1 className="contact-list-title">Contacts</h1>
+          <span className="con-length">{contacts.length} contacts</span>
+        </div>
+        <button className="btn-add" onClick={onAdd}>
+          <i className="fas fa-plus" /> Add
+        </button>
+      </div>
 
-        <div className="con-length">
-          Total Contacts: {props.contacts.length}
+      <div className="con-search">
+        <div className="con-search-input">
+          <i className="fas fa-search" />
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder="Search contacts..."
+            className="Prompt"
+            value={term}
+            onChange={() => searchKeyword(inputRef.current.value)}
+          />
         </div>
-        <div className="con-search">
-          <div className="con-search-input">
-            <input
-              ref={inputE1}
-              type="text"
-              placeholder="Search Contact"
-              className="Prompt"
-              value={props.term}
-              onChange={getSearchTerm}
+      </div>
+
+      <div className="con-list">
+        {contacts.length > 0 ? (
+          contacts.map((contact) => (
+            <ContactCard
+              key={contact._id}
+              contact={contact}
+              onView={() => onView(contact)}
+              onEdit={() => onEdit(contact)}
+              onDelete={() => onDelete(contact)}
             />
-            <i className="fa fa-search"></i>
+          ))
+        ) : (
+          <div className="con-list-empty">
+            <i className="fas fa-address-book" />
+            <p>No contacts found</p>
           </div>
-        </div>
-        <div className="con-list">
-          {renderContactList.length > 0 ? (
-            renderContactList
-          ) : (
-            <div className="con-list-empty">No Contacts Found</div>
-          )}
-        </div>
+        )}
       </div>
     </div>
   );

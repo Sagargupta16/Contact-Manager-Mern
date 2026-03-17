@@ -1,66 +1,50 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const AddContact = ({ addContactHandler }) => {
-  const [contact, setContact] = useState({
-    name: "",
-    email: "",
-  });
-  const navigate = useNavigate();
+  const [contact, setContact] = useState({ name: "", email: "" });
 
-  const add = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (contact.name === "" || contact.email === "") {
       toast.error("All fields are mandatory!");
       return;
     }
-    try {
-      await addContactHandler(contact);
-      setContact({ name: "", email: "" });
-      navigate("/");
-    } catch (error) {
-      // Error toast is handled in App.js
-      console.log("Error in AddContact:", error);
-    }
+    await addContactHandler(contact);
   };
 
   return (
-    <div className="container-contact2">
-      <Link to="/">
-        <button className="btn3">{"<"}</button>
-      </Link>
-      <div className="wrap-contact2">
-        <form className="contact2-form" onSubmit={add}>
-          <span className="contact2-form-title">Add Contact</span>
-          <div className="wrap-input2">
-            <input
-              className="input2"
-              placeholder="Name"
-              type="text"
-              name="name"
-              value={contact.name}
-              onChange={(e) => setContact({ ...contact, name: e.target.value })}
-            />
-            <span className="focus-input2" data-placeholder="NAME"></span>
-          </div>
-          <div className="wrap-input2">
-            <input
-              className="input2"
-              placeholder="Email"
-              type="email"
-              name="email"
-              value={contact.email}
-              onChange={(e) =>
-                setContact({ ...contact, email: e.target.value })
-              }
-            />
-            <span className="focus-input2" data-placeholder="EMAIL"></span>
-          </div>
-          <button className="btn">Add</button>
-        </form>
+    <form className="modal-form" onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label className="form-label" htmlFor="add-name">
+          Name
+        </label>
+        <input
+          id="add-name"
+          className="form-input"
+          type="text"
+          placeholder="John Doe"
+          value={contact.name}
+          onChange={(e) => setContact({ ...contact, name: e.target.value })}
+        />
       </div>
-    </div>
+      <div className="form-group">
+        <label className="form-label" htmlFor="add-email">
+          Email
+        </label>
+        <input
+          id="add-email"
+          className="form-input"
+          type="email"
+          placeholder="john@example.com"
+          value={contact.email}
+          onChange={(e) => setContact({ ...contact, email: e.target.value })}
+        />
+      </div>
+      <button className="btn-primary" type="submit">
+        Add Contact
+      </button>
+    </form>
   );
 };
 

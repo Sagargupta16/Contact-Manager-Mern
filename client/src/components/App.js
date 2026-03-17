@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Toast.css";
 import "./App.css";
 import Header from "./Header";
-import AddContact from "./AddContact.js";
-import EditContact from "./EditContact.js";
-import ContactList from "./ContactList.js";
-import DarkMode from "./darkmode.js";
+import AddContact from "./AddContact";
+import EditContact from "./EditContact";
+import ContactList from "./ContactList";
 import ContactDetail from "./ContactDetail";
+import Modal from "./Modal";
+import DarkMode from "./darkmode";
 
 const API_URL = process.env.REACT_APP_API_URL || "";
 
@@ -18,6 +18,11 @@ function App() {
   const [contacts, setContacts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [modal, setModal] = useState({ type: null, contact: null });
+
+  const openModal = (type, contact = null) => setModal({ type, contact });
+  const closeModal = () => setModal({ type: null, contact: null });
+
   const getContacts = async () => {
     try {
       const res = await axios.get(API_URL + "/api/contacts");
@@ -25,7 +30,6 @@ function App() {
         setContacts(res.data);
       }
     } catch (err) {
-      console.log("Error from ContactList", err);
       toast.error("Failed to fetch contacts!");
     }
   };
@@ -34,9 +38,9 @@ function App() {
     try {
       await axios.post(API_URL + "/api/contacts", contact);
       getContacts();
+      closeModal();
       toast.success("Contact added successfully!");
     } catch (err) {
-      console.log("Error from AddContact", err);
       toast.error("Failed to add contact!");
     }
   };
@@ -45,34 +49,34 @@ function App() {
     try {
       await axios.put(API_URL + "/api/contacts/" + contact._id, contact);
       getContacts();
+      closeModal();
       toast.success("Contact updated successfully!");
     } catch (err) {
-      console.log("Error from UpdateContactInfo", err);
       toast.error("Failed to update contact!");
     }
   };
 
   const removeContactHandler = async (contact) => {
+    if (!window.confirm(`Are you sure you want to delete ${contact.name}?`)) {
+      return;
+    }
     try {
       await axios.delete(API_URL + "/api/contacts/" + contact._id);
       getContacts();
       toast.success("Contact deleted successfully!");
     } catch (err) {
-      console.error("Error from RemoveContact:", err);
       toast.error("Failed to delete contact!");
     }
   };
 
-  const searchHandler = (searchTerm) => {
-    setSearchTerm(searchTerm);
-    if (searchTerm.length > 0) {
-      const newContactList = contacts.filter((contact) => {
-        return Object.values(contact.name + " " + contact.email)
-          .join("")
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase());
-      });
-      setSearchResults(newContactList);
+  const searchHandler = (term) => {
+    setSearchTerm(term);
+    if (term.length > 0) {
+      setSearchResults(
+        contacts.filter((c) =>
+          (c.name + " " + c.email).toLowerCase().includes(term.toLowerCase()),
+        ),
+      );
     } else {
       setSearchResults(contacts);
     }
@@ -81,57 +85,62 @@ function App() {
   useEffect(() => {
     getContacts();
   }, []);
+
+  const displayedContacts = searchTerm.length > 0 ? searchResults : contacts;
+
   return (
     <div className="App-container">
-      <Router basename={process.env.PUBLIC_URL}>
-        <Header />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <ContactList
-                contacts={searchTerm.length < 1 ? contacts : searchResults}
-                getContactID={removeContactHandler}
-                term={searchTerm}
-                searchKeyword={searchHandler}
-              />
-            }
+      <Header />
+      <ContactList
+        contacts={displayedContacts}
+        term={searchTerm}
+        searchKeyword={searchHandler}
+        onAdd={() => openModal("add")}
+        onView={(contact) => openModal("detail", contact)}
+        onEdit={(contact) => openModal("edit", contact)}
+        onDelete={removeContactHandler}
+      />
+      <DarkMode />
+
+      {modal.type === "add" && (
+        <Modal onClose={closeModal} title="Add Contact">
+          <AddContact
+            addContactHandler={addContactHandler}
+            onClose={closeModal}
           />
-          <Route
-            path="/add"
-            element={<AddContact addContactHandler={addContactHandler} />}
+        </Modal>
+      )}
+
+      {modal.type === "edit" && modal.contact && (
+        <Modal onClose={closeModal} title="Edit Contact">
+          <EditContact
+            contact={modal.contact}
+            updateContactHandler={updateContactHandler}
+            onClose={closeModal}
           />
-          <Route
-            path="/edit/:id"
-            element={
-              <EditContact
-                contacts={contacts}
-                updateContactHandler={updateContactHandler}
-              />
-            }
+        </Modal>
+      )}
+
+      {modal.type === "detail" && modal.contact && (
+        <Modal onClose={closeModal} title="Contact Details">
+          <ContactDetail
+            contact={modal.contact}
+            onEdit={(contact) => openModal("edit", contact)}
           />
-          <Route
-            path="/contact/:id"
-            element={<ContactDetail contacts={contacts} />}
-          />
-        </Routes>
-        <DarkMode />
-      </Router>
+        </Modal>
+      )}
+
       <ToastContainer
         position="bottom-right"
-        autoClose={4000}
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop
         closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
         toastClassName="custom-toast"
         bodyClassName="custom-toast-body"
         progressClassName="custom-progress-bar"
-        transition={undefined}
       />
     </div>
   );
