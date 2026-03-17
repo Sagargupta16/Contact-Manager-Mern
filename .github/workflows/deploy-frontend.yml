@@ -35,7 +35,7 @@ jobs:
           REACT_APP_API_URL: https://contact-manager-mern-cg19.onrender.com
         run: |
           cd client
-          npm ci
+          npm install
           npm run build
 
       - name: Copy index.html to 404.html for SPA routing
