@@ -20,9 +20,7 @@
     "format": "prettier --write .",
     "start": "nodemon index.js",
     "dev": "concurrently \"npm run start\" \"cd client && npm start\"",
-    "frontend-build": "cd client && npm run build",
-    "frontend-install": "cd client && npm install",
-    "build": "npm install && npm run frontend-install && npm run frontend-build"
+    "build": "npm install"
   },
   "version": "1.0.0"
 }

@@ -17,6 +17,11 @@
 
 ### Changed
 
+- Split deployment: frontend on GitHub Pages, backend API-only on Render
+- Frontend API calls use `REACT_APP_API_URL` env var (empty in dev, Render URL in prod)
+- GitHub Actions workflow auto-deploys frontend on push to `client/`
+- CORS restricted to GitHub Pages origin and localhost
+- Backend no longer serves static files
 - Complete UI redesign: Inter font, semantic CSS variables, proper card spacing, subtle hover effects, focus rings on inputs, cleaned up dark/light mode palette
 - `.nvmrc` updated from Node 19 (EOL) to Node 22 (LTS)
 

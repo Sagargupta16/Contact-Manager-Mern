@@ -12,13 +12,15 @@ import ContactList from "./ContactList.js";
 import DarkMode from "./darkmode.js";
 import ContactDetail from "./ContactDetail";
 
+const API_URL = process.env.REACT_APP_API_URL || "";
+
 function App() {
   const [contacts, setContacts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const getContacts = async () => {
     try {
-      const res = await axios.get("/api/contacts");
+      const res = await axios.get(API_URL + "/api/contacts");
       if (Array.isArray(res.data)) {
         setContacts(res.data);
       }
@@ -30,7 +32,7 @@ function App() {
 
   const addContactHandler = async (contact) => {
     try {
-      await axios.post("/api/contacts", contact);
+      await axios.post(API_URL + "/api/contacts", contact);
       getContacts();
       toast.success("Contact added successfully!");
     } catch (err) {
@@ -41,7 +43,7 @@ function App() {
 
   const updateContactHandler = async (contact) => {
     try {
-      await axios.put("/api/contacts/" + contact._id, contact);
+      await axios.put(API_URL + "/api/contacts/" + contact._id, contact);
       getContacts();
       toast.success("Contact updated successfully!");
     } catch (err) {
@@ -52,7 +54,7 @@ function App() {
 
   const removeContactHandler = async (contact) => {
     try {
-      await axios.delete("/api/contacts/" + contact._id);
+      await axios.delete(API_URL + "/api/contacts/" + contact._id);
       getContacts();
       toast.success("Contact deleted successfully!");
     } catch (err) {
@@ -81,7 +83,7 @@ function App() {
   }, []);
   return (
     <div className="App-container">
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Header />
         <Routes>
           <Route

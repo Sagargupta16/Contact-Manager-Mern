@@ -9,7 +9,9 @@ A full-stack contact management application built with the MERN stack, featuring
 
 ## Live Demo
 
-[contact-manager-mern-cg19.onrender.com](https://contact-manager-mern-cg19.onrender.com/)
+[sagargupta16.github.io/Contact-Manager-Mern](https://sagargupta16.github.io/Contact-Manager-Mern/)
+
+Backend API: [contact-manager-mern-cg19.onrender.com](https://contact-manager-mern-cg19.onrender.com/)
 
 ## Overview
 
@@ -28,12 +30,14 @@ A MERN (MongoDB, Express.js, React, Node.js) contact management application that
 
 ## Tech Stack
 
-| Layer     | Technology                    |
-| --------- | ----------------------------- |
-| Frontend  | React 19, React Router 7, CSS |
-| Backend   | Node.js, Express 5            |
-| Database  | MongoDB, Mongoose 8           |
-| Dev Tools | Concurrently, Nodemon         |
+| Layer            | Technology                        |
+| ---------------- | --------------------------------- |
+| Frontend         | React 19, React Router 7, CSS     |
+| Backend          | Node.js, Express 5                |
+| Database         | MongoDB, Mongoose 8               |
+| Dev Tools        | Concurrently, Nodemon             |
+| Frontend Hosting | GitHub Pages (via GitHub Actions) |
+| Backend Hosting  | Render                            |
 
 ## Project Structure
 
