@@ -9,6 +9,9 @@ const ContactSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  phone: {
+    type: String,
+  },
 });
 
 module.exports = Contact = mongoose.model("contact", ContactSchema);

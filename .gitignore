@@ -27,3 +27,10 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# AI
+.claude/
+CLAUDE.md
+
+# Playwright
+.playwright-mcp/

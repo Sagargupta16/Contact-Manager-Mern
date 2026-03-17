@@ -1,12 +1,23 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-const ContactDetail = (props) => {
-  const location = useLocation();
-  const _id = location.pathname.substring(
-    location.pathname.lastIndexOf("/") + 1,
-  );
-  const { name, email } = props.contacts.find((contact) => contact._id === _id);
+const ContactDetail = ({ contacts }) => {
+  const { id } = useParams();
+  const contact = contacts.find((c) => c._id === id);
+
+  if (!contact) {
+    return (
+      <div className="main">
+        <Link to="/">
+          <button className="btn3">{"<"}</button>
+        </Link>
+        <div className="card">
+          <div className="card-content">Contact not found</div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="main">
       <Link to="/">
@@ -17,8 +28,8 @@ const ContactDetail = (props) => {
           <img src="https://www.gravatar.com/avatar/?d=mp" alt="user" />
         </div>
         <div className="card-content">
-          <div className="card-content-header">{name}</div>
-          <div className="card-content-email">{email}</div>
+          <div className="card-content-header">{contact.name}</div>
+          <div className="card-content-email">{contact.email}</div>
         </div>
       </div>
     </div>

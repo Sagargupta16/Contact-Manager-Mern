@@ -16,11 +16,12 @@ function App() {
   const [contacts, setContacts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const getContacts = async () => {
     try {
       const res = await axios.get("/api/contacts");
-      setContacts(res.data);
+      if (Array.isArray(res.data)) {
+        setContacts(res.data);
+      }
     } catch (err) {
       console.log("Error from ContactList", err);
       toast.error("Failed to fetch contacts!");
@@ -28,7 +29,6 @@ function App() {
   };
 
   const addContactHandler = async (contact) => {
-    setIsLoading(true);
     try {
       await axios.post("/api/contacts", contact);
       getContacts();
@@ -36,13 +36,10 @@ function App() {
     } catch (err) {
       console.log("Error from AddContact", err);
       toast.error("Failed to add contact!");
-    } finally {
-      setIsLoading(false);
     }
   };
 
   const updateContactHandler = async (contact) => {
-    setIsLoading(true);
     try {
       await axios.put("/api/contacts/" + contact._id, contact);
       getContacts();
@@ -50,27 +47,17 @@ function App() {
     } catch (err) {
       console.log("Error from UpdateContactInfo", err);
       toast.error("Failed to update contact!");
-    } finally {
-      setIsLoading(false);
     }
   };
 
   const removeContactHandler = async (contact) => {
-    setIsLoading(true);
     try {
-      const response = await axios.delete("/api/contacts/" + contact._id);
-      console.log("Delete successful:", response.data);
+      await axios.delete("/api/contacts/" + contact._id);
       getContacts();
       toast.success("Contact deleted successfully!");
     } catch (err) {
       console.error("Error from RemoveContact:", err);
-      if (err.response) {
-        console.error("Response data:", err.response.data);
-        console.error("Response status:", err.response.status);
-      }
       toast.error("Failed to delete contact!");
-    } finally {
-      setIsLoading(false);
     }
   };
 

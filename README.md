@@ -17,7 +17,7 @@ A MERN (MongoDB, Express.js, React, Node.js) contact management application that
 
 ## Features
 
-- **Add Contacts** -- Create new contacts with name, email, and phone
+- **Add Contacts** -- Create new contacts with name and email
 - **Edit Contacts** -- Update existing contact information
 - **Delete Contacts** -- Remove contacts from the database
 - **Search** -- Filter contacts by name or email
@@ -28,13 +28,12 @@ A MERN (MongoDB, Express.js, React, Node.js) contact management application that
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React 18, React Router, Redux, CSS |
-| Backend | Node.js, Express 4.18 |
-| Database | MongoDB 8.0, Mongoose |
-| Auth | bcryptjs |
-| Dev Tools | Concurrently, Nodemon |
+| Layer     | Technology                    |
+| --------- | ----------------------------- |
+| Frontend  | React 19, React Router 7, CSS |
+| Backend   | Node.js, Express 5            |
+| Database  | MongoDB, Mongoose 8           |
+| Dev Tools | Concurrently, Nodemon         |
 
 ## Project Structure
 
@@ -42,20 +41,19 @@ A MERN (MongoDB, Express.js, React, Node.js) contact management application that
 Contact-Manager-Mern/
 ├── client/                     # React frontend
 │   ├── public/
-│   ├── images/                 # Screenshots
 │   └── src/
 │       └── components/
-│           ├── App.js          # Root with routing
+│           ├── App.js          # Root with routing and state
 │           ├── AddContact.js   # Add contact form
 │           ├── EditContact.js  # Edit contact form
 │           ├── ContactList.js  # Contact list display
 │           ├── ContactCard.js  # Individual contact card
-│           ├── ContactDetails.js # Contact detail view
+│           ├── ContactDetail.js # Contact detail view
 │           ├── Header.js       # App header
 │           └── darkmode.js     # Theme toggle
 ├── config/
 │   ├── db.js                   # MongoDB connection
-│   └── default.js              # Database URL config
+│   └── default.json            # Database URL config
 ├── models/
 │   └── Contact.js              # Contact Mongoose schema
 ├── routes/
@@ -69,7 +67,7 @@ Contact-Manager-Mern/
 
 ### Prerequisites
 
-- Node.js 16+
+- Node.js 22+
 - MongoDB (local or Atlas)
 
 ### Installation
@@ -79,17 +77,17 @@ git clone https://github.com/Sagargupta16/Contact-Manager-Mern.git
 cd Contact-Manager-Mern
 
 # Install all dependencies (backend + frontend)
-npm run fb-install
+npm install && cd client && npm install && cd ..
 ```
 
 ### Configuration
 
-Update `config/default.js` with your MongoDB connection string:
+Update `config/default.json` with your MongoDB connection string:
 
-```js
-module.exports = {
-  mongoURI: "your_mongodb_connection_string"
-};
+```json
+{
+  "mongoURI": "your_mongodb_connection_string"
+}
 ```
 
 ### Running
@@ -102,13 +100,13 @@ npm run dev
 
 ## API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/contacts` | Get all contacts |
-| GET | `/api/contacts/:id` | Get single contact |
-| POST | `/api/contacts` | Create contact |
-| PUT | `/api/contacts/:id` | Update contact |
-| DELETE | `/api/contacts/:id` | Delete contact |
+| Method | Endpoint                    | Description        |
+| ------ | --------------------------- | ------------------ |
+| GET    | `/api/contacts`             | Get all contacts   |
+| GET    | `/api/contacts/contact/:id` | Get single contact |
+| POST   | `/api/contacts`             | Create contact     |
+| PUT    | `/api/contacts/:id`         | Update contact     |
+| DELETE | `/api/contacts/:id`         | Delete contact     |
 
 ## Screenshots
 
