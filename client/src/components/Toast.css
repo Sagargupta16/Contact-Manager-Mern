@@ -1,107 +1,98 @@
-/* Custom Toast Styles - Matching App Theme */
+/* Toast Styles — Warm Editorial Craft */
 .Toastify__toast-container {
-  width: 350px;
+  width: 360px;
   z-index: 9999;
 }
 
 .custom-toast {
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  font-family: "Poppins", sans-serif;
+  box-shadow: 0 8px 30px rgba(26, 22, 17, 0.12);
+  font-family: var(--font-body);
   font-weight: 500;
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--bg-black-50);
-  min-height: 64px;
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  min-height: 60px;
 }
 
 .custom-toast-body {
-  padding: 16px;
+  padding: 14px 16px;
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .custom-progress-bar {
   height: 3px;
 }
 
-/* Success Toast - Green theme */
+/* Success — warm olive green */
 .Toastify__toast--success {
-  background: linear-gradient(135deg, #4ade80, #22c55e);
-  color: white;
-  border-left: 4px solid #16a34a;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-left: 3px solid #6b8e5e;
 }
 
-/* Error Toast - Red theme */
+/* Error — warm red */
 .Toastify__toast--error {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: white;
-  border-left: 4px solid #b91c1c;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-left: 3px solid var(--danger);
 }
 
-/* Info Toast - Blue theme matching app */
+/* Info */
 .Toastify__toast--info {
-  background: var(--bg-black-100);
-  color: var(--text-black-900);
-  border-left: 4px solid #3b82f6;
-  border: 1px solid var(--bg-black-50);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-left: 3px solid var(--accent);
 }
 
-/* Warning Toast - Yellow theme */
+/* Warning — amber */
 .Toastify__toast--warning {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: white;
-  border-left: 4px solid #b45309;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-left: 3px solid var(--amber);
 }
 
-/* Default Toast - Matching app theme */
+/* Default */
 .Toastify__toast--default {
-  background: var(--bg-black-100);
-  color: var(--text-black-900);
-  border: 1px solid var(--bg-black-50);
-  border-left: 4px solid var(--text-black-700);
-}
-
-.Toastify__progress-bar {
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-left: 3px solid var(--text-secondary);
 }
 
 .Toastify__progress-bar--success {
-  background: rgba(255, 255, 255, 0.9);
+  background: #6b8e5e;
 }
 
 .Toastify__progress-bar--error {
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--danger);
 }
 
 .Toastify__progress-bar--info {
-  background: #3b82f6;
+  background: var(--accent);
+}
+
+.Toastify__progress-bar--warning {
+  background: var(--amber);
 }
 
 .Toastify__progress-bar--default {
-  background: var(--text-black-700);
+  background: var(--text-secondary);
 }
 
 .Toastify__close-button {
-  color: currentColor;
-  opacity: 0.8;
-  font-size: 18px;
+  color: var(--text-muted);
+  opacity: 0.7;
+  font-size: 16px;
   align-self: flex-start;
   margin-top: 4px;
 }
 
 .Toastify__close-button:hover {
   opacity: 1;
+  color: var(--text-primary);
 }
 
-/* Dark theme support */
-body.dark .Toastify__toast--info,
-body.dark .Toastify__toast--default {
-  background: var(--bg-black-100);
-  color: var(--text-black-900);
-  border: 1px solid var(--bg-black-50);
-}
-
-/* Custom animations for bottom-right */
+/* Slide animations */
 @keyframes slideInRight {
   from {
     transform: translate3d(100%, 0, 0);
@@ -125,23 +116,22 @@ body.dark .Toastify__toast--default {
 }
 
 .Toastify__slide-enter--bottom-right {
-  animation: slideInRight 0.3s ease-out;
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .Toastify__slide-exit--bottom-right {
-  animation: slideOutRight 0.3s ease-in;
+  animation: slideOutRight 0.25s ease-in;
 }
 
-/* Toast icons */
 .Toastify__toast-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 12px;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
   margin-top: 2px;
   flex-shrink: 0;
 }
 
-/* Responsive design */
+/* Responsive */
 @media (max-width: 768px) {
   .Toastify__toast-container {
     width: 100vw;
@@ -152,7 +142,7 @@ body.dark .Toastify__toast--default {
   }
 
   .custom-toast {
-    margin: 0 0 16px 0;
-    border-radius: 8px;
+    margin: 0 0 12px 0;
+    border-radius: 10px;
   }
 }

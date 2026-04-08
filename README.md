@@ -118,6 +118,21 @@ npm run dev
 ![Contact Manager](./client/images/1_2.png)
 ![Contact Manager](./client/images/1_3.png)
 
+## Changelog
+
+### v2.0.0 -- Warm Editorial Craft UI Redesign
+
+- **Typography overhaul**: Replaced Inter with Playfair Display (serif headings) + DM Sans (body) for a premium editorial feel
+- **Warm color system**: Terracotta, amber, and sand palette replacing cold purple/indigo. Dark mode uses warm charcoal tones
+- **Name-seeded avatar gradients**: Each contact gets a unique, consistent gradient derived from their name
+- **Staggered card animations**: Contacts cascade in with elastic easing on page load
+- **Hover-reveal actions**: Edit/delete buttons slide in on card hover, keeping the UI clean
+- **Textured backgrounds**: Subtle SVG noise overlay and radial gradient orbs for depth
+- **Header accent stripe**: Warm gradient line at the top of the header and modals
+- **Refined toasts**: Themed toast notifications with warm left-border accents
+- **Dark mode cleanup**: Improved toggle using proper button element for accessibility
+- **Responsive polish**: Action buttons always visible on mobile, tighter spacing on small screens
+
 ## License
 
 MIT

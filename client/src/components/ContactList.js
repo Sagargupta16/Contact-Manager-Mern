@@ -17,10 +17,13 @@ const ContactList = ({
       <div className="contact-list-header">
         <div>
           <h1 className="contact-list-title">Contacts</h1>
-          <span className="con-length">{contacts.length} contacts</span>
+          <span className="con-length">
+            {contacts.length} {contacts.length === 1 ? "person" : "people"}
+          </span>
         </div>
         <button className="btn-add" onClick={onAdd}>
-          <i className="fas fa-plus" /> Add
+          <i className="fas fa-plus" />
+          {" New Contact"}
         </button>
       </div>
 
@@ -30,7 +33,7 @@ const ContactList = ({
           <input
             ref={inputRef}
             type="text"
-            placeholder="Search contacts..."
+            placeholder="Search by name or email..."
             className="Prompt"
             value={term}
             onChange={() => searchKeyword(inputRef.current.value)}
@@ -52,7 +55,7 @@ const ContactList = ({
         ) : (
           <div className="con-list-empty">
             <i className="fas fa-address-book" />
-            <p>No contacts found</p>
+            <p>{term ? "No matches found" : "Your address book is empty"}</p>
           </div>
         )}
       </div>
