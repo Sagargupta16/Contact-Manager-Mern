@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 
 const EditContact = ({ contact: initialContact, updateContactHandler }) => {
@@ -46,6 +47,15 @@ const EditContact = ({ contact: initialContact, updateContactHandler }) => {
       </button>
     </form>
   );
+};
+
+EditContact.propTypes = {
+  contact: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+  }).isRequired,
+  updateContactHandler: PropTypes.func.isRequired,
 };
 
 export default EditContact;

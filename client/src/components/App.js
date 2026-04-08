@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,16 +23,16 @@ function App() {
   const openModal = (type, contact = null) => setModal({ type, contact });
   const closeModal = () => setModal({ type: null, contact: null });
 
-  const getContacts = async () => {
+  const getContacts = useCallback(async () => {
     try {
       const res = await axios.get(API_URL + "/api/contacts");
       if (Array.isArray(res.data)) {
         setContacts(res.data);
       }
-    } catch (err) {
+    } catch {
       toast.error("Failed to fetch contacts!");
     }
-  };
+  }, []);
 
   const addContactHandler = async (contact) => {
     try {
@@ -40,7 +40,7 @@ function App() {
       getContacts();
       closeModal();
       toast.success("Contact added successfully!");
-    } catch (err) {
+    } catch {
       toast.error("Failed to add contact!");
     }
   };
@@ -51,7 +51,7 @@ function App() {
       getContacts();
       closeModal();
       toast.success("Contact updated successfully!");
-    } catch (err) {
+    } catch {
       toast.error("Failed to update contact!");
     }
   };
@@ -64,7 +64,7 @@ function App() {
       await axios.delete(API_URL + "/api/contacts/" + contact._id);
       getContacts();
       toast.success("Contact deleted successfully!");
-    } catch (err) {
+    } catch {
       toast.error("Failed to delete contact!");
     }
   };
@@ -84,7 +84,7 @@ function App() {
 
   useEffect(() => {
     getContacts();
-  }, []);
+  }, [getContacts]);
 
   const displayedContacts = searchTerm.length > 0 ? searchResults : contacts;
 

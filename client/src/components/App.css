@@ -295,11 +295,30 @@ a {
   border: 1px solid var(--border);
   border-left: 3px solid transparent;
   border-radius: var(--radius-sm);
-  cursor: pointer;
   transition: all var(--transition);
   box-shadow: var(--shadow-card);
   position: relative;
   animation: cardSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+/* Stretched button covers entire card for accessible click target */
+.item-link {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: inherit;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+.item-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+  border-radius: inherit;
 }
 
 .item:nth-child(1) { animation-delay: 0.03s; }
@@ -389,6 +408,8 @@ a {
   opacity: 0;
   transform: translateX(8px);
   transition: all var(--transition);
+  position: relative;
+  z-index: 1;
 }
 
 .item:hover .item-actions {
@@ -423,25 +444,37 @@ a {
 
 /* ---- Modal ---- */
 
-.modal-overlay {
+.modal-wrapper {
   position: fixed;
   inset: 0;
   z-index: 200;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
   background: rgba(26, 22, 17, 0.5);
   backdrop-filter: blur(12px) saturate(1.2);
   -webkit-backdrop-filter: blur(12px) saturate(1.2);
-  animation: fadeIn 0.2s ease;
-  padding: 20px;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: default;
+  z-index: 0;
 }
 
-body.dark .modal-overlay {
+body.dark .modal-backdrop {
   background: rgba(10, 8, 6, 0.6);
 }
 
-.modal-content {
+dialog.modal-content {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 460px;
   background: var(--bg-primary);
@@ -450,10 +483,13 @@ body.dark .modal-overlay {
   box-shadow: var(--shadow-lg);
   animation: modalSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
+  padding: 0;
+  color: var(--text-primary);
+  outline: none;
 }
 
 /* Warm accent line at top of modal */
-.modal-content::before {
+dialog.modal-content::before {
   content: "";
   display: block;
   height: 3px;

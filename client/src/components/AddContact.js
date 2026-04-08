@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 
 const AddContact = ({ addContactHandler }) => {
@@ -46,6 +47,10 @@ const AddContact = ({ addContactHandler }) => {
       </button>
     </form>
   );
+};
+
+AddContact.propTypes = {
+  addContactHandler: PropTypes.func.isRequired,
 };
 
 export default AddContact;

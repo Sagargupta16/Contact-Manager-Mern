@@ -13,7 +13,7 @@ router.get("/test", (req, res) => res.send("Contact route testing!"));
 router.get("/", (req, res) => {
   Contact.find()
     .then((contacts) => res.json(contacts))
-    .catch((err) => res.status(404).json({ error: "No contacts found" }));
+    .catch(() => res.status(404).json({ error: "No contacts found" }));
 });
 
 // @route GET api/contacts/contact/:id
@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
 router.get("/contact/:id", (req, res) => {
   Contact.findById(req.params.id)
     .then((contact) => res.json(contact))
-    .catch((err) => res.status(404).json({ error: "No Contact found" }));
+    .catch(() => res.status(404).json({ error: "No Contact found" }));
 });
 
 // @route POST api/contacts
@@ -31,8 +31,8 @@ router.get("/contact/:id", (req, res) => {
 router.post("/", (req, res) => {
   const { name, email, phone } = req.body;
   Contact.create({ name, email, phone })
-    .then((contact) => res.json({ msg: "Contact added successfully" }))
-    .catch((err) =>
+    .then(() => res.json({ msg: "Contact added successfully" }))
+    .catch(() =>
       res.status(400).json({ error: "Unable to add this Contact" }),
     );
 });
@@ -43,8 +43,8 @@ router.post("/", (req, res) => {
 router.put("/:id", (req, res) => {
   const { name, email, phone } = req.body;
   Contact.findByIdAndUpdate(req.params.id, { name, email, phone })
-    .then((contact) => res.json({ msg: "Updated successfully" }))
-    .catch((err) =>
+    .then(() => res.json({ msg: "Updated successfully" }))
+    .catch(() =>
       res.status(400).json({ error: "Unable to update the Database" }),
     );
 });
