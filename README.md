@@ -1,5 +1,13 @@
 # Contact Manager (MERN)
 
+![GitHub stars](https://img.shields.io/github/stars/Sagargupta16/Contact-Manager-Mern?style=flat-square)
+![GitHub forks](https://img.shields.io/github/forks/Sagargupta16/Contact-Manager-Mern?style=flat-square)
+![License](https://img.shields.io/github/license/Sagargupta16/Contact-Manager-Mern?style=flat-square)
+![Last Commit](https://img.shields.io/github/last-commit/Sagargupta16/Contact-Manager-Mern?style=flat-square)
+![Demo](https://img.shields.io/badge/demo-live-brightgreen?style=flat-square)
+
+**[View Live Demo](https://sagargupta.online/Contact-Manager-Mern/)**
+
 A full-stack contact management application built with the MERN stack, featuring MongoDB persistence, dark/light mode, and real-time CRUD operations.
 
 ![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=black)
@@ -132,6 +140,15 @@ npm run dev
 - **Refined toasts**: Themed toast notifications with warm left-border accents
 - **Dark mode cleanup**: Improved toggle using proper button element for accessibility
 - **Responsive polish**: Action buttons always visible on mobile, tighter spacing on small screens
+
+## More Projects
+
+| Project | Description |
+|---------|-------------|
+| [Financial Dashboard](https://github.com/Sagargupta16/Financial-Dashboard) | Modern React financial dashboard with analytics and data visualization |
+| [LeetCode Rating Predictor](https://github.com/Sagargupta16/LeetCode_Rating_Predictor) | Full-stack ML-powered LeetCode contest rating predictor |
+| [InstagramLikesLeaderboard](https://github.com/Sagargupta16/InstagramLikesLeaderboard) | Browser tool showing who likes your Instagram posts the most |
+| [claude-cost-optimizer](https://github.com/Sagargupta16/claude-cost-optimizer) | Save 30-60% on Claude Code costs - proven strategies and benchmarks |
 
 ## License
 
