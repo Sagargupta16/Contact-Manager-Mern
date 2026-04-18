@@ -34,3 +34,5 @@ CLAUDE.md
 
 # Playwright
 .playwright-mcp/
+# Added for consistency
+.next/
