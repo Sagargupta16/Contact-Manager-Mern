@@ -29,8 +29,8 @@ router.get("/contact/:id", (req, res) => {
 // @description add/save Contact
 // @access Public
 router.post("/", (req, res) => {
-  const { name, email, phone } = req.body;
-  Contact.create({ name, email, phone })
+  const { name, email, phone, isFavorite, tags } = req.body;
+  Contact.create({ name, email, phone, isFavorite, tags })
     .then(() => res.json({ msg: "Contact added successfully" }))
     .catch(() =>
       res.status(400).json({ error: "Unable to add this Contact" }),
@@ -41,8 +41,8 @@ router.post("/", (req, res) => {
 // @description Update Contact
 // @access Public
 router.put("/:id", (req, res) => {
-  const { name, email, phone } = req.body;
-  Contact.findByIdAndUpdate(req.params.id, { name, email, phone })
+  const { name, email, phone, isFavorite, tags } = req.body;
+  Contact.findByIdAndUpdate(req.params.id, { name, email, phone, isFavorite, tags })
     .then(() => res.json({ msg: "Updated successfully" }))
     .catch(() =>
       res.status(400).json({ error: "Unable to update the Database" }),
