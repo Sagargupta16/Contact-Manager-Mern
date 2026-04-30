@@ -876,8 +876,8 @@ dialog.modal-content::before {
   width: 16px;
   height: 16px;
   border: none;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
+  background: rgba(0, 0, 0, 0.35);
+  color: #ffffff;
   border-radius: 50%;
   font-size: 12px;
   line-height: 1;
@@ -887,7 +887,7 @@ dialog.modal-content::before {
 }
 
 .tag-remove:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.55);
 }
 
 .tag-input {

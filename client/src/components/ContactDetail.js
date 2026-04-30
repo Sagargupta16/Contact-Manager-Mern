@@ -20,8 +20,8 @@ const ContactDetail = ({ contact, onEdit }) => {
       {phone && <div className="detail-phone">{phone}</div>}
       {tags && tags.length > 0 && (
         <div className="detail-tags">
-          {tags.map((tag, index) => (
-            <span key={index} className="detail-tag">{tag}</span>
+          {tags.map((tag) => (
+            <span key={tag} className="detail-tag">{tag}</span>
           ))}
         </div>
       )}

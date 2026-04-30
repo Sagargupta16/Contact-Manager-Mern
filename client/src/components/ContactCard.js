@@ -23,8 +23,8 @@ const ContactCard = ({ contact, onView, onEdit, onDelete, onToggleFavorite }) =>
         <div className="item-mail">{email}</div>
         {tags && tags.length > 0 && (
           <div className="item-tags">
-            {tags.slice(0, 3).map((tag, index) => (
-              <span key={index} className="item-tag">{tag}</span>
+            {tags.slice(0, 3).map((tag) => (
+              <span key={tag} className="item-tag">{tag}</span>
             ))}
             {tags.length > 3 && (
               <span className="item-tag-more">+{tags.length - 3}</span>
@@ -37,7 +37,7 @@ const ContactCard = ({ contact, onView, onEdit, onDelete, onToggleFavorite }) =>
           className={`icon-btn favorite-btn ${isFavorite ? "active" : ""}`}
           onClick={(e) => {
             e.stopPropagation();
-            onToggleFavorite && onToggleFavorite(contact);
+            onToggleFavorite?.(contact);
           }}
           aria-label={isFavorite ? `Unfavorite ${name}` : `Favorite ${name}`}
         >

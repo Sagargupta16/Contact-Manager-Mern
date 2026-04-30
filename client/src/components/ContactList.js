@@ -2,6 +2,12 @@ import { useRef } from "react";
 import PropTypes from "prop-types";
 import ContactCard from "./ContactCard";
 
+const getEmptyMessage = (hasActiveFilters, term) => {
+  if (hasActiveFilters) return "No matches found for current filters";
+  if (term) return "No matches found";
+  return "Your address book is empty";
+};
+
 const ContactList = ({
   contacts,
   term,
@@ -103,13 +109,7 @@ const ContactList = ({
         ) : (
           <div className="con-list-empty">
             <i className="fas fa-address-book" />
-            <p>
-              {hasActiveFilters
-                ? "No matches found for current filters"
-                : term
-                ? "No matches found"
-                : "Your address book is empty"}
-            </p>
+            <p>{getEmptyMessage(hasActiveFilters, term)}</p>
           </div>
         )}
       </div>

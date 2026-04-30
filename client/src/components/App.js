@@ -81,7 +81,7 @@ function App() {
   };
 
   const removeContactHandler = async (contact) => {
-    if (!window.confirm(`Are you sure you want to delete ${contact.name}?`)) {
+    if (!globalThis.confirm(`Are you sure you want to delete ${contact.name}?`)) {
       return;
     }
     try {
@@ -155,11 +155,11 @@ function App() {
   const allTags = useMemo(() => {
     const tags = new Set();
     contacts.forEach((c) => {
-      if (c.tags && Array.isArray(c.tags)) {
+      if (Array.isArray(c.tags)) {
         c.tags.forEach((tag) => tags.add(tag));
       }
     });
-    return Array.from(tags).sort();
+    return Array.from(tags).sort((a, b) => a.localeCompare(b));
   }, [contacts]);
 
   const displayedContacts = useMemo(() => {
@@ -171,8 +171,7 @@ function App() {
 
       const matchesFavorite = !filterFavorite || (c.isFavorite === true);
 
-      const matchesTags = filterTags.length === 0 ||
-        filterTags.every((tag) => c.tags && c.tags.includes(tag));
+      const matchesTags = filterTags.every((tag) => c.tags?.includes(tag));
 
       return matchesSearch && matchesFavorite && matchesTags;
     });

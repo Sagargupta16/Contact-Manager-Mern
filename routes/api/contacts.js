@@ -57,9 +57,9 @@ router.put("/:id", (req, res) => {
       }
 
       const updateData = {
-        name: name !== undefined ? name : contact.name,
-        email: email !== undefined ? email : contact.email,
-        phone: phone !== undefined ? phone : contact.phone,
+        name: name === undefined ? contact.name : name,
+        email: email === undefined ? contact.email : email,
+        phone: phone === undefined ? contact.phone : phone,
         isFavorite: typeof isFavorite === "boolean" ? isFavorite : contact.isFavorite,
         tags: Array.isArray(tags) ? tags : contact.tags,
       };
