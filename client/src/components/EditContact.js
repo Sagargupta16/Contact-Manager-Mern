@@ -5,8 +5,8 @@ import { toast } from "react-toastify";
 const EditContact = ({ contact: initialContact, updateContactHandler }) => {
   const [contact, setContact] = useState({
     ...initialContact,
-    isFavorite: initialContact.isFavorite || false,
-    tags: initialContact.tags || []
+    isFavorite: typeof initialContact.isFavorite === "boolean" ? initialContact.isFavorite : false,
+    tags: Array.isArray(initialContact.tags) ? initialContact.tags : []
   });
   const [tagInput, setTagInput] = useState("");
 

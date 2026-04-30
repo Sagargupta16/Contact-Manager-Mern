@@ -30,8 +30,15 @@ router.get("/contact/:id", (req, res) => {
 // @access Public
 router.post("/", (req, res) => {
   const { name, email, phone, isFavorite, tags } = req.body;
-  Contact.create({ name, email, phone, isFavorite, tags })
-    .then(() => res.json({ msg: "Contact added successfully" }))
+  const newContact = {
+    name,
+    email,
+    phone,
+    isFavorite: typeof isFavorite === "boolean" ? isFavorite : false,
+    tags: Array.isArray(tags) ? tags : [],
+  };
+  Contact.create(newContact)
+    .then((contact) => res.json({ msg: "Contact added successfully", contact }))
     .catch(() =>
       res.status(400).json({ error: "Unable to add this Contact" }),
     );
@@ -42,8 +49,32 @@ router.post("/", (req, res) => {
 // @access Public
 router.put("/:id", (req, res) => {
   const { name, email, phone, isFavorite, tags } = req.body;
-  Contact.findByIdAndUpdate(req.params.id, { name, email, phone, isFavorite, tags })
-    .then(() => res.json({ msg: "Updated successfully" }))
+
+  Contact.findById(req.params.id)
+    .then((contact) => {
+      if (!contact) {
+        return res.status(404).json({ error: "No Contact found" });
+      }
+
+      const updateData = {
+        name: name !== undefined ? name : contact.name,
+        email: email !== undefined ? email : contact.email,
+        phone: phone !== undefined ? phone : contact.phone,
+        isFavorite: typeof isFavorite === "boolean" ? isFavorite : contact.isFavorite,
+        tags: Array.isArray(tags) ? tags : contact.tags,
+      };
+
+      return Contact.findByIdAndUpdate(
+        req.params.id,
+        updateData,
+        { new: true, runValidators: true }
+      );
+    })
+    .then((updatedContact) => {
+      if (updatedContact) {
+        res.json({ msg: "Updated successfully", contact: updatedContact });
+      }
+    })
     .catch(() =>
       res.status(400).json({ error: "Unable to update the Database" }),
     );

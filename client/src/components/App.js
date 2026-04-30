@@ -25,11 +25,18 @@ function App() {
   const openModal = (type, contact = null) => setModal({ type, contact });
   const closeModal = () => setModal({ type: null, contact: null });
 
+  const normalizeContact = (contact) => ({
+    ...contact,
+    isFavorite: typeof contact.isFavorite === "boolean" ? contact.isFavorite : false,
+    tags: Array.isArray(contact.tags) ? contact.tags : [],
+  });
+
   const getContacts = useCallback(async () => {
     try {
       const res = await axios.get(API_URL + "/api/contacts");
       if (Array.isArray(res.data)) {
-        setContacts(res.data);
+        const normalizedContacts = res.data.map(normalizeContact);
+        setContacts(normalizedContacts);
       }
     } catch {
       toast.error("Failed to fetch contacts!");
