@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
+import TagInput from "./TagInput";
 
 const AddContact = ({ addContactHandler }) => {
   const [contact, setContact] = useState({
@@ -10,25 +11,6 @@ const AddContact = ({ addContactHandler }) => {
     isFavorite: false,
     tags: []
   });
-  const [tagInput, setTagInput] = useState("");
-
-  const handleAddTag = (e) => {
-    if (e.key === "Enter" || e.key === ",") {
-      e.preventDefault();
-      const newTag = tagInput.trim().replace(",", "");
-      if (newTag && !contact.tags.includes(newTag)) {
-        setContact({ ...contact, tags: [...contact.tags, newTag] });
-      }
-      setTagInput("");
-    }
-  };
-
-  const handleRemoveTag = (tagToRemove) => {
-    setContact({
-      ...contact,
-      tags: contact.tags.filter(tag => tag !== tagToRemove)
-    });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -94,29 +76,11 @@ const AddContact = ({ addContactHandler }) => {
         <label className="form-label" htmlFor="add-tags">
           Tags
         </label>
-        <div className="tags-container">
-          {contact.tags.map((tag, index) => (
-            <span key={index} className="tag">
-              {tag}
-              <button
-                type="button"
-                className="tag-remove"
-                onClick={() => handleRemoveTag(tag)}
-              >
-                &times;
-              </button>
-            </span>
-          ))}
-          <input
-            id="add-tags"
-            className="tag-input"
-            type="text"
-            placeholder="Enter tag and press Enter"
-            value={tagInput}
-            onChange={(e) => setTagInput(e.target.value)}
-            onKeyDown={handleAddTag}
-          />
-        </div>
+        <TagInput
+          id="add-tags"
+          tags={contact.tags}
+          onChange={(tags) => setContact({ ...contact, tags })}
+        />
       </div>
       <button className="btn-primary" type="submit">
         Add Contact

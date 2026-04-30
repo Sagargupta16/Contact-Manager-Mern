@@ -71,8 +71,12 @@ router.put("/:id", (req, res) => {
       );
     })
     .then((updatedContact) => {
+      // updatedContact is undefined when the previous .then sent a 404 response
+      if (res.headersSent) return;
       if (updatedContact) {
         res.json({ msg: "Updated successfully", contact: updatedContact });
+      } else {
+        res.status(404).json({ error: "No Contact found" });
       }
     })
     .catch(() =>
