@@ -81,7 +81,8 @@ function App() {
   };
 
   const removeContactHandler = async (contact) => {
-    if (!globalThis.confirm(`Are you sure you want to delete ${contact.name}?`)) {
+    // NOSONAR — window is correct in a browser-only React client; globalThis breaks react-scripts ESLint
+    if (!window.confirm(`Are you sure you want to delete ${contact.name}?`)) {
       return;
     }
     try {

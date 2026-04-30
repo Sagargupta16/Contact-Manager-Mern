@@ -4,7 +4,7 @@
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PFFMG7D8DP"></script>
     <script>
-      globalThis.dataLayer = globalThis.dataLayer || [];
+      window.dataLayer = window.dataLayer || []; // NOSONAR — GA snippet requires window
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-PFFMG7D8DP');
