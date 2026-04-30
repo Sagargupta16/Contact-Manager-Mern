@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,21 +13,30 @@ import Modal from "./Modal";
 import DarkMode from "./darkmode";
 
 const API_URL = process.env.REACT_APP_API_URL || "";
+const STORAGE_KEY = "contact_filter_state";
 
 function App() {
   const [contacts, setContacts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [filterFavorite, setFilterFavorite] = useState(false);
+  const [filterTags, setFilterTags] = useState([]);
   const [modal, setModal] = useState({ type: null, contact: null });
 
   const openModal = (type, contact = null) => setModal({ type, contact });
   const closeModal = () => setModal({ type: null, contact: null });
 
+  const normalizeContact = (contact) => ({
+    ...contact,
+    isFavorite: typeof contact.isFavorite === "boolean" ? contact.isFavorite : false,
+    tags: Array.isArray(contact.tags) ? contact.tags : [],
+  });
+
   const getContacts = useCallback(async () => {
     try {
       const res = await axios.get(API_URL + "/api/contacts");
       if (Array.isArray(res.data)) {
-        setContacts(res.data);
+        const normalizedContacts = res.data.map(normalizeContact);
+        setContacts(normalizedContacts);
       }
     } catch {
       toast.error("Failed to fetch contacts!");
@@ -56,6 +65,21 @@ function App() {
     }
   };
 
+  const toggleFavoriteHandler = async (contact) => {
+    try {
+      const updatedContact = { ...contact, isFavorite: !contact.isFavorite };
+      await axios.put(API_URL + "/api/contacts/" + contact._id, updatedContact);
+      getContacts();
+      toast.success(
+        updatedContact.isFavorite
+          ? `${contact.name} added to favorites!`
+          : `${contact.name} removed from favorites!`
+      );
+    } catch {
+      toast.error("Failed to update favorite status!");
+    }
+  };
+
   const removeContactHandler = async (contact) => {
     if (!window.confirm(`Are you sure you want to delete ${contact.name}?`)) {
       return;
@@ -71,22 +95,95 @@ function App() {
 
   const searchHandler = (term) => {
     setSearchTerm(term);
-    if (term.length > 0) {
-      setSearchResults(
-        contacts.filter((c) =>
-          (c.name + " " + c.email).toLowerCase().includes(term.toLowerCase()),
-        ),
-      );
-    } else {
-      setSearchResults(contacts);
+    saveFilterState({ searchTerm: term, filterFavorite, filterTags });
+  };
+
+  const toggleFavoriteFilter = () => {
+    const newFilterFavorite = !filterFavorite;
+    setFilterFavorite(newFilterFavorite);
+    saveFilterState({ searchTerm, filterFavorite: newFilterFavorite, filterTags });
+  };
+
+  const toggleTagFilter = (tag) => {
+    const newFilterTags = filterTags.includes(tag)
+      ? filterTags.filter((t) => t !== tag)
+      : [...filterTags, tag];
+    setFilterTags(newFilterTags);
+    saveFilterState({ searchTerm, filterFavorite, filterTags: newFilterTags });
+  };
+
+  const resetFilters = () => {
+    setSearchTerm("");
+    setFilterFavorite(false);
+    setFilterTags([]);
+    clearFilterState();
+    toast.success("Filters reset!");
+  };
+
+  const saveFilterState = (state) => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+      console.warn("Failed to save filter state to localStorage:", e);
     }
   };
 
-  useEffect(() => {
-    getContacts();
-  }, [getContacts]);
+  const loadFilterState = useCallback(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const state = JSON.parse(saved);
+        if (state.searchTerm !== undefined) setSearchTerm(state.searchTerm);
+        if (state.filterFavorite !== undefined) setFilterFavorite(state.filterFavorite);
+        if (state.filterTags !== undefined && Array.isArray(state.filterTags)) {
+          setFilterTags(state.filterTags);
+        }
+      }
+    } catch (e) {
+      console.warn("Failed to load filter state from localStorage:", e);
+    }
+  }, []);
 
-  const displayedContacts = searchTerm.length > 0 ? searchResults : contacts;
+  const clearFilterState = () => {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (e) {
+      console.warn("Failed to clear filter state from localStorage:", e);
+    }
+  };
+
+  const allTags = useMemo(() => {
+    const tags = new Set();
+    contacts.forEach((c) => {
+      if (c.tags && Array.isArray(c.tags)) {
+        c.tags.forEach((tag) => tags.add(tag));
+      }
+    });
+    return Array.from(tags).sort();
+  }, [contacts]);
+
+  const displayedContacts = useMemo(() => {
+    return contacts.filter((c) => {
+      const matchesSearch = searchTerm.length === 0 ||
+        (c.name + " " + c.email + " " + (c.tags || []).join(" "))
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+
+      const matchesFavorite = !filterFavorite || (c.isFavorite === true);
+
+      const matchesTags = filterTags.length === 0 ||
+        filterTags.every((tag) => c.tags && c.tags.includes(tag));
+
+      return matchesSearch && matchesFavorite && matchesTags;
+    });
+  }, [contacts, searchTerm, filterFavorite, filterTags]);
+
+  useEffect(() => {
+    loadFilterState();
+    getContacts();
+  }, [loadFilterState, getContacts]);
+
+  const hasActiveFilters = searchTerm.length > 0 || filterFavorite || filterTags.length > 0;
 
   return (
     <div className="App-container">
@@ -95,10 +192,18 @@ function App() {
         contacts={displayedContacts}
         term={searchTerm}
         searchKeyword={searchHandler}
+        filterFavorite={filterFavorite}
+        toggleFavoriteFilter={toggleFavoriteFilter}
+        filterTags={filterTags}
+        allTags={allTags}
+        toggleTagFilter={toggleTagFilter}
+        hasActiveFilters={hasActiveFilters}
+        resetFilters={resetFilters}
         onAdd={() => openModal("add")}
         onView={(contact) => openModal("detail", contact)}
         onEdit={(contact) => openModal("edit", contact)}
         onDelete={removeContactHandler}
+        onToggleFavorite={toggleFavoriteHandler}
       />
       <DarkMode />
 
