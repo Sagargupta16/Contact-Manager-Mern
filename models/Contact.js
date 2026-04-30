@@ -12,6 +12,14 @@ const ContactSchema = new mongoose.Schema({
   phone: {
     type: String,
   },
+  isFavorite: {
+    type: Boolean,
+    default: false,
+  },
+  tags: {
+    type: [String],
+    default: [],
+  },
 });
 
 const Contact = mongoose.model("contact", ContactSchema);
