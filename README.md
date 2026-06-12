@@ -1,9 +1,9 @@
 # Contact Manager (MERN)
 
-![GitHub stars](https://img.shields.io/github/stars/Sagargupta16/Contact-Manager-Mern?style=flat-square)
-![GitHub forks](https://img.shields.io/github/forks/Sagargupta16/Contact-Manager-Mern?style=flat-square)
-![License](https://img.shields.io/github/license/Sagargupta16/Contact-Manager-Mern?style=flat-square)
-![Last Commit](https://img.shields.io/github/last-commit/Sagargupta16/Contact-Manager-Mern?style=flat-square)
+![GitHub stars](https://img.shields.io/github/stars/Sagargupta16/Contact-Manager-Mern?style=flat-square&cacheSeconds=86400)
+![GitHub forks](https://img.shields.io/github/forks/Sagargupta16/Contact-Manager-Mern?style=flat-square&cacheSeconds=86400)
+![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
+![Last Commit](https://img.shields.io/github/last-commit/Sagargupta16/Contact-Manager-Mern?style=flat-square&cacheSeconds=86400)
 ![Demo](https://img.shields.io/badge/demo-live-brightgreen?style=flat-square)
 
 **[View Live Demo](https://sagargupta.online/Contact-Manager-Mern/)**
@@ -19,7 +19,7 @@ A full-stack contact management application built with the MERN stack, featuring
 
 [sagargupta16.github.io/Contact-Manager-Mern](https://sagargupta16.github.io/Contact-Manager-Mern/)
 
-Backend API: [contact-manager-mern-cg19.onrender.com](https://contact-manager-mern-cg19.onrender.com/)
+Backend API: [contact-manager-mern-cg19.onrender.com/api/contacts](https://contact-manager-mern-cg19.onrender.com/api/contacts)
 
 ## Overview
 
@@ -128,7 +128,7 @@ npm run dev
 
 ## Changelog
 
-### v2.0.0 -- Warm Editorial Craft UI Redesign
+### 2026-04-08 -- Warm Editorial Craft UI Redesign
 
 - **Typography overhaul**: Replaced Inter with Playfair Display (serif headings) + DM Sans (body) for a premium editorial feel
 - **Warm color system**: Terracotta, amber, and sand palette replacing cold purple/indigo. Dark mode uses warm charcoal tones
