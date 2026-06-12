@@ -32,7 +32,10 @@
     "webpack-dev-server": "^5.2.1",
     "underscore": "^1.13.7",
     "http-proxy-agent": "^7.0.0",
-    "yaml": "^2.4.2"
+    "yaml": "^2.4.2",
+    "qs": "^6.15.2",
+    "uuid": "^11.1.1",
+    "ws": "^8.21.0"
   },
   "browserslist": {
     "production": [
