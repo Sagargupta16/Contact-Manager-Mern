@@ -42,8 +42,8 @@ A MERN (MongoDB, Express.js, React, Node.js) contact management application that
 | ---------------- | --------------------------------- |
 | Frontend         | React 19, React Router 7, CSS     |
 | Backend          | Node.js, Express 5                |
-| Database         | MongoDB, Mongoose 8               |
-| Dev Tools        | Concurrently, Nodemon             |
+| Database         | MongoDB, Mongoose 9               |
+| Dev Tools        | Vite, Concurrently, Nodemon       |
 | Frontend Hosting | GitHub Pages (via GitHub Actions) |
 | Backend Hosting  | Render                            |
 
@@ -55,14 +55,14 @@ Contact-Manager-Mern/
 │   ├── public/
 │   └── src/
 │       └── components/
-│           ├── App.js          # Root with routing and state
-│           ├── AddContact.js   # Add contact form
-│           ├── EditContact.js  # Edit contact form
-│           ├── ContactList.js  # Contact list display
-│           ├── ContactCard.js  # Individual contact card
-│           ├── ContactDetail.js # Contact detail view
-│           ├── Header.js       # App header
-│           └── darkmode.js     # Theme toggle
+│           ├── App.jsx         # Root with routing and state
+│           ├── AddContact.jsx  # Add contact form
+│           ├── EditContact.jsx # Edit contact form
+│           ├── ContactList.jsx # Contact list display
+│           ├── ContactCard.jsx # Individual contact card
+│           ├── ContactDetail.jsx # Contact detail view
+│           ├── Header.jsx      # App header
+│           └── darkmode.jsx    # Theme toggle
 ├── config/
 │   ├── db.js                   # MongoDB connection
 │   └── default.json            # Database URL config

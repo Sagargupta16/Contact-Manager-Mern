@@ -17,6 +17,8 @@
 
 ### Changed
 
+- Migrated client from react-scripts (CRA, deprecated) to Vite; components renamed to `.jsx`, security overrides block dropped (`REACT_APP_API_URL` and `build/` output kept via Vite config so the deploy workflow is unchanged)
+- Upgraded mongoose from 8 to 9
 - Split deployment: frontend on GitHub Pages, backend API-only on Render
 - Frontend API calls use `REACT_APP_API_URL` env var (empty in dev, Render URL in prod)
 - GitHub Actions workflow auto-deploys frontend on push to `client/`

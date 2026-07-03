@@ -12,7 +12,7 @@ import ContactDetail from "./ContactDetail";
 import Modal from "./Modal";
 import DarkMode from "./darkmode";
 
-const API_URL = process.env.REACT_APP_API_URL || "";
+const API_URL = import.meta.env.REACT_APP_API_URL || "";
 const STORAGE_KEY = "contact_filter_state";
 
 function App() {
@@ -81,7 +81,7 @@ function App() {
   };
 
   const removeContactHandler = async (contact) => {
-    // NOSONAR — window is correct in a browser-only React client; globalThis breaks react-scripts ESLint
+    // NOSONAR — window is correct in a browser-only React client
     if (!window.confirm(`Are you sure you want to delete ${contact.name}?`)) {
       return;
     }
